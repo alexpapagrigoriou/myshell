@@ -3,6 +3,7 @@ TARGET := myshell
 CC := gcc
 
 SRC_DIR := src
+INC_DIR := include
 
 BUILD_DIR := build
 BIN_DIR := bin
@@ -16,9 +17,11 @@ DEPS := $(OBJS:.o=.d)
 
 STD_FLAGS := -std=c11
 WARN_FLAGS := -Wall -Wextra -Wpedantic -Werror
+DBG_FLAGS  := -g
+INC_FLAGS := -I$(INC_DIR)
 DEP_FLAGS := -MMD -MP
 
-CFLAGS := $(STD_FLAGS) $(WARN_FLAGS) $(DEP_FLAGS) -g
+CFLAGS := $(STD_FLAGS) $(WARN_FLAGS) $(DBG_FLAGS) $(INC_FLAGS) $(DEP_FLAGS)
 
 LDLIBS :=
 LDFLAGS :=

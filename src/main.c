@@ -1,46 +1,24 @@
-#include <ctype.h>
 #include <stdio.h>
-#include <string.h>
 
-#define INPUT_SIZE 1024
-
-char* trim(char* str) {
-    while (isspace(*str)) {
-        str++;
-    }
-
-    if (*str == '\0') {
-        return str;
-    }
-
-    char* end = str + strlen(str) - 1;
-
-    while (end > str && isspace(*end)) {
-        end--;
-    }
-
-    *(end + 1) = '\0';
-
-    return str;
-}
+#include "shell.h"
 
 int main(void) {
-    char input[INPUT_SIZE];
+    char buffer[BUFFER_SIZE];
 
     while (1) {
         printf("myshell> ");
 
-        if (fgets(input, sizeof(input), stdin) == NULL) {
+        if (!read_input(buffer, BUFFER_SIZE)) {
             break;
         }
 
-        char* command = trim(input);
+        char** args = parse_command(trim(buffer));
 
-        printf("%s\n", command);
-
-        if (strcmp(command, "exit") == 0) {
-            break;
+        if (args == NULL) {
+            continue;
         }
+
+        execute_command(args);
     }
 
     return 0;
