@@ -5,7 +5,13 @@
 
 #define BUFFER_SIZE 1024
 
-bool read_input(char* buffer, size_t size);
+typedef enum {
+    INPUT_OK,
+    INPUT_EOF,
+    INPUT_TOO_LONG
+} input_status;
+
+input_status read_input(char* buffer, size_t size);
 char* trim(char* str);
 char** parse_command(char* command);
-void execute_command(char** args);
+bool execute_command(char** args);

@@ -8,8 +8,16 @@ int main(void) {
     while (1) {
         printf("myshell> ");
 
-        if (!read_input(buffer, BUFFER_SIZE)) {
+        input_status status = read_input(buffer, BUFFER_SIZE);
+
+        if (status == INPUT_EOF) {
+            printf("\nmyshell> exit\n");
             break;
+        }
+
+        if (status == INPUT_TOO_LONG) {
+            fprintf(stderr, "myshell: input too long\n");
+            continue;
         }
 
         char** args = parse_command(trim(buffer));
@@ -18,7 +26,9 @@ int main(void) {
             continue;
         }
 
-        execute_command(args);
+        if (!execute_command(args)) {
+            break;
+        }
     }
 
     return 0;

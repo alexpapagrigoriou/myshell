@@ -4,12 +4,28 @@
 
 #include "shell.h"
 
-bool read_input(char* buffer, size_t size) {
+input_status read_input(char* buffer, size_t size) {
     if (fgets(buffer, size, stdin) == NULL) {
-        return false;
+        return INPUT_EOF;
     }
 
-    return true;
+    size_t len = strlen(buffer);
+    if (len > 0 && buffer[len - 1] != '\n' && feof(stdin)) {
+        return INPUT_EOF;
+    }
+
+    if (len == size - 1 && buffer[len - 1] != '\n') {
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
+
+        if (c == EOF) {
+            return INPUT_EOF;
+        }
+
+        return INPUT_TOO_LONG;
+    }
+
+    return INPUT_OK;
 }
 
 char* trim(char* str) {

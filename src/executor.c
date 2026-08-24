@@ -4,15 +4,15 @@
 
 #include "shell.h"
 
-void execute_command(char** args) {
+bool execute_command(char** args) {
     if (args[0] == NULL) {
         free(args);
-        return;
+        return true;
     }
 
     if (strcmp(args[0], "exit") == 0) {
         free(args);
-        exit(EXIT_SUCCESS);
+        return false;
     }
 
     for (int i = 0; args[i] != NULL; i++) {
@@ -21,4 +21,6 @@ void execute_command(char** args) {
     printf("\n");
 
     free(args);
+
+    return true;
 }
