@@ -1,0 +1,52 @@
+TARGET := myshell
+
+CC := gcc
+
+SRC_DIR := src
+
+BUILD_DIR := build
+BIN_DIR := bin
+
+SRCS := $(shell find $(SRC_DIR) -name '*.c')
+
+OBJS := $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
+
+DEPS := $(OBJS:.o=.d)
+-include $(DEPS)
+
+STD_FLAGS := -std=c11
+WARN_FLAGS := -Wall -Wextra -Wpedantic -Werror
+DEP_FLAGS := -MMD -MP
+
+CFLAGS := $(STD_FLAGS) $(WARN_FLAGS) $(DEP_FLAGS) -g
+
+LDLIBS :=
+LDFLAGS :=
+
+.DEFAULT_GOAL := all
+
+all: $(BIN_DIR)/$(TARGET)
+
+run: all
+	@./$(BIN_DIR)/$(TARGET)
+
+$(BIN_DIR)/$(TARGET): $(OBJS) | $(BIN_DIR)
+	$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS)
+
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR) $(BIN_DIR):
+	@mkdir -p $@
+
+gdb: all
+	@gdb ./$(BIN_DIR)/$(TARGET)
+
+clean:
+	@rm -rf $(BUILD_DIR) $(BIN_DIR)
+
+compile-db:
+	@bear -- make -B all
+
+.PHONY: all run gdb clean compile-db
