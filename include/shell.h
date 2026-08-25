@@ -13,4 +13,3 @@ typedef enum {
 input_status read_input(char* buffer, size_t size);
 char* trim(char* str);
 char** parse_command(char* command);
-int execute_command(char** args);

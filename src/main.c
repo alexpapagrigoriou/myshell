@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "executor.h"
 #include "shell.h"
 
 int main(void) {
@@ -27,7 +28,7 @@ int main(void) {
             continue;
         }
 
-        if (!execute_command(args)) {
+        if (execute_command(args) < 0) {
             free(args);
             break;
         }

@@ -39,6 +39,12 @@ make clean
 
 Removes all generated build artifacts (`build/` and `bin/`).
 
+## Third-Party Libraries
+
+| Library | Repository | License |
+| --- | --- | --- |
+| incbin | [GitHub](https://github.com/graphitemaster/incbin) | [Unlicense](third_party/incbin/UNLICENSE) |
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
