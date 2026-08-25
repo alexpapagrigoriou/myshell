@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "shell.h"
 
@@ -27,8 +28,11 @@ int main(void) {
         }
 
         if (!execute_command(args)) {
+            free(args);
             break;
         }
+
+        free(args);
     }
 
     return 0;

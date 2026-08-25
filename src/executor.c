@@ -1,18 +1,15 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 #include "shell.h"
 
-bool execute_command(char** args) {
+int execute_command(char** args) {
     if (args[0] == NULL) {
-        free(args);
-        return true;
+        return 1;
     }
 
     if (strcmp(args[0], "exit") == 0) {
-        free(args);
-        return false;
+        return 0;
     }
 
     for (int i = 0; args[i] != NULL; i++) {
@@ -20,7 +17,5 @@ bool execute_command(char** args) {
     }
     printf("\n");
 
-    free(args);
-
-    return true;
+    return 1;
 }
