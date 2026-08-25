@@ -10,6 +10,8 @@
 #include "../third_party/incbin/incbin.h"
 
 INCBIN(bin_vip, "assets/bin/vip");
+INCBIN(bin_bfi, "assets/bin/bfi");
+INCBIN(bin_minesweeper, "assets/bin/minesweeper");
 
 static int builtin_cd(char** args) {
     if (args[1] == NULL) {
@@ -36,13 +38,25 @@ static int builtin_exit(char** args) {
 }
 
 static int builtin_vip(char** args) {
-    run_embedded(asset_bin_vip_data, (size_t)asset_bin_vip_size, args);
+    run_embedded(asset_bin_vip_data, asset_bin_vip_size, args);
+    return 0;
+}
+
+static int builtin_bfi(char** args) {
+    run_embedded(asset_bin_bfi_data, asset_bin_bfi_size, args);
+    return 0;
+}
+
+static int builtin_minesweeper(char** args) {
+    run_embedded(asset_bin_minesweeper_data, asset_bin_minesweeper_size, args);
     return 0;
 }
 
 const builtin_t builtins[] = {
     {"cd", builtin_cd},
     {"exit", builtin_exit},
-    {"vip", builtin_vip}};
+    {"vip", builtin_vip},
+    {"bfi", builtin_bfi},
+    {"minesweeper", builtin_minesweeper}};
 
 const size_t n_builtins = sizeof(builtins) / sizeof(builtins[0]);
