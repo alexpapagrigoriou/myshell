@@ -39,6 +39,16 @@ make clean
 
 Removes all generated build artifacts (`build/` and `bin/`).
 
+## Embedded Projects
+
+MyShell embeds several of my own projects as built-in commands.
+
+| Command | Project | Repository | Description |
+| --- | --- | --- | --- |
+| `vip` [filename] | vip | [GitHub](https://github.com/alexpapagrigoriou/vip) | A modal, terminal-based text editor. |
+| `bfi` [filename] | brainfuck_interpreter | [GitHub](https://github.com/alexpapagrigoriou/brainfuck_interpreter) | A Brainfuck Interpreter. |
+| `minesweeper` | minesweeper | [GitHub](https://github.com/alexpapagrigoriou/minesweeper) | A terminal-based Minesweeper implementation. |
+
 ## Third-Party Libraries
 
 | Library | Repository | License |
