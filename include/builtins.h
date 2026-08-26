@@ -2,10 +2,10 @@
 
 #include <stddef.h>
 
-typedef int (*builtin_fn)(char** args);
+typedef int (*builtin_fn)(char **args);
 
 typedef struct {
-    const char* name;
+    const char *name;
     builtin_fn func;
 } builtin_t;
 

@@ -22,7 +22,7 @@ int main(void) {
             continue;
         }
 
-        char** args = parse_command(trim(buffer));
+        char **args = parse_command(trim(buffer));
 
         if (args == NULL) {
             continue;

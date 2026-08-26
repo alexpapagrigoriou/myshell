@@ -10,6 +10,6 @@ typedef enum {
     INPUT_TOO_LONG
 } input_status;
 
-input_status read_input(char* buffer, size_t size);
-char* trim(char* str);
-char** parse_command(char* command);
+input_status read_input(char *buffer, size_t size);
+char *trim(char *str);
+char **parse_command(char *command);

@@ -13,7 +13,7 @@ INCBIN(bin_vip, "assets/bin/vip");
 INCBIN(bin_bfi, "assets/bin/bfi");
 INCBIN(bin_minesweeper, "assets/bin/minesweeper");
 
-static int builtin_cd(char** args) {
+static int builtin_cd(char **args) {
     if (args[1] == NULL) {
         fprintf(stderr, "cd: no argument given\n");
         return 1;
@@ -32,22 +32,22 @@ static int builtin_cd(char** args) {
     return 0;
 }
 
-static int builtin_exit(char** args) {
+static int builtin_exit(char **args) {
     (void)args;
     return -1;
 }
 
-static int builtin_vip(char** args) {
+static int builtin_vip(char **args) {
     run_embedded(asset_bin_vip_data, asset_bin_vip_size, args);
     return 0;
 }
 
-static int builtin_bfi(char** args) {
+static int builtin_bfi(char **args) {
     run_embedded(asset_bin_bfi_data, asset_bin_bfi_size, args);
     return 0;
 }
 
-static int builtin_minesweeper(char** args) {
+static int builtin_minesweeper(char **args) {
     run_embedded(asset_bin_minesweeper_data, asset_bin_minesweeper_size, args);
     return 0;
 }

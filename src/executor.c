@@ -9,7 +9,7 @@
 
 #include "builtins.h"
 
-int run_external(char** args) {
+int run_external(char **args) {
     pid_t pid = fork();
 
     if (pid < 0) {
@@ -28,7 +28,7 @@ int run_external(char** args) {
     return WIFEXITED(status) ? WEXITSTATUS(status) : 1;
 }
 
-int run_embedded(const unsigned char* data, size_t size, char* const argv[]) {
+int run_embedded(const unsigned char *data, size_t size, char *const argv[]) {
     int fd = memfd_create(argv[0], MFD_CLOEXEC);
 
     if (fd < 0) {
@@ -65,7 +65,7 @@ int run_embedded(const unsigned char* data, size_t size, char* const argv[]) {
     return WIFEXITED(status) ? WEXITSTATUS(status) : 1;
 }
 
-int execute_command(char** args) {
+int execute_command(char **args) {
     if (args[0] == NULL) {
         return 0;
     }
