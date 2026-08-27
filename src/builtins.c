@@ -10,6 +10,7 @@
 #include "../third_party/incbin/incbin.h"
 
 INCBIN(bin_vip, "assets/bin/vip");
+INCBIN(bin_bf, "assets/bin/bf");
 INCBIN(bin_bfi, "assets/bin/bfi");
 INCBIN(bin_minesweeper, "assets/bin/minesweeper");
 
@@ -42,6 +43,11 @@ static int builtin_vip(char **args) {
     return 0;
 }
 
+static int builtin_bf(char **args) {
+    run_embedded(asset_bin_bf_data, asset_bin_bf_size, args);
+    return 0;
+}
+
 static int builtin_bfi(char **args) {
     run_embedded(asset_bin_bfi_data, asset_bin_bfi_size, args);
     return 0;
@@ -56,6 +62,7 @@ const builtin_t builtins[] = {
     {"cd", builtin_cd},
     {"exit", builtin_exit},
     {"vip", builtin_vip},
+    {"bf", builtin_bf},
     {"bfi", builtin_bfi},
     {"minesweeper", builtin_minesweeper}};
 
