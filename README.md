@@ -45,9 +45,9 @@ MyShell embeds several of my own projects as built-in commands.
 
 | Command | Project | Repository | Description |
 | --- | --- | --- | --- |
-| `vip` [filename] | vip | [GitHub](https://github.com/alexpapagrigoriou/vip) | A modal, terminal-based text editor. |
-| `bf` <filename> | brainfuck_compiler | [GitHub](https://github.com/alexpapagrigoriou/brainfuck_compiler) | A Brainfuck Compiler. |
-| `bfi` [filename] | brainfuck_interpreter | [GitHub](https://github.com/alexpapagrigoriou/brainfuck_interpreter) | A Brainfuck Interpreter. |
+| `vip [filename]` | vip | [GitHub](https://github.com/alexpapagrigoriou/vip) | A modal, terminal-based text editor. |
+| `bf <filename>` | brainfuck_compiler | [GitHub](https://github.com/alexpapagrigoriou/brainfuck_compiler) | A Brainfuck Compiler. |
+| `bfi [filename]` | brainfuck_interpreter | [GitHub](https://github.com/alexpapagrigoriou/brainfuck_interpreter) | A Brainfuck Interpreter. |
 | `minesweeper` | minesweeper | [GitHub](https://github.com/alexpapagrigoriou/minesweeper) | A terminal-based Minesweeper implementation. |
 
 ## Third-Party Libraries
