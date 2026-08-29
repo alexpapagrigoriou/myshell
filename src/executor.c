@@ -33,7 +33,7 @@ int run_external(char **args) {
     return WIFEXITED(status) ? WEXITSTATUS(status) : 1;
 }
 
-int run_embedded(const unsigned char *data, size_t size, char *const argv[]) {
+int run_embedded(const unsigned char *data, size_t size, char **argv) {
     int fd = memfd_create(argv[0], MFD_CLOEXEC);
 
     if (fd < 0) {
