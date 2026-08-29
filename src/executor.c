@@ -19,12 +19,17 @@ int run_external(char **args) {
 
     if (pid == 0) {
         execvp(args[0], args);
-        fprintf(stderr, "myshell: command not found: %s\n", args[0]);
+        perror("myshell");
         _exit(EXIT_FAILURE);
     }
 
     int status;
-    waitpid(pid, &status, 0);
+
+    if (waitpid(pid, &status, 0) < 0) {
+        perror("waitpid");
+        return 1;
+    }
+
     return WIFEXITED(status) ? WEXITSTATUS(status) : 1;
 }
 
@@ -61,7 +66,12 @@ int run_embedded(const unsigned char *data, size_t size, char *const argv[]) {
     close(fd);
 
     int status;
-    waitpid(pid, &status, 0);
+
+    if (waitpid(pid, &status, 0) < 0) {
+        perror("waitpid");
+        return 1;
+    }
+
     return WIFEXITED(status) ? WEXITSTATUS(status) : 1;
 }
 
